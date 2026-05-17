@@ -114,4 +114,40 @@
     });
   });
 
+  // === Card Preview Modal ===
+  var cardModal = document.getElementById('cardModal');
+  var lanyardCard = document.getElementById('lanyardCard');
+
+  if (cardModal && lanyardCard) {
+    var modalClose = cardModal.querySelector('.card-modal-close');
+    var modalBackdrop = cardModal.querySelector('.card-modal-backdrop');
+    var clickStart = 0;
+
+    // Open modal on click (not drag)
+    lanyardCard.addEventListener('pointerdown', function () { clickStart = Date.now(); });
+    lanyardCard.addEventListener('pointerup', function (e) {
+      // Only open if it was a quick tap (not a drag)
+      if (Date.now() - clickStart < 250) {
+        cardModal.classList.add('active');
+        cardModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+
+    function closeModal() {
+      cardModal.classList.remove('active');
+      cardModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && cardModal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  }
+
 })();

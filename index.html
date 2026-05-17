@@ -533,6 +533,88 @@
             min-width: 0 !important;
         }
 
+        /* Card Preview Modal */
+        .card-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .card-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .card-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .card-modal-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        .card-modal.active .card-modal-content {
+            transform: scale(1) translateY(0);
+        }
+        .card-modal-close {
+            position: absolute;
+            top: -16px;
+            right: -16px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: #fff;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 2;
+            line-height: 1;
+        }
+        .card-modal-close:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.1);
+        }
+        .card-modal-card {
+            width: 300px;
+            animation: cardFloat 4s ease-in-out infinite;
+        }
+        .card-modal-card .id-card {
+            box-shadow:
+                0 40px 80px -20px rgba(0, 0, 0, 0.5),
+                0 20px 40px -10px rgba(99, 102, 241, 0.35),
+                0 0 60px rgba(99, 102, 241, 0.15);
+        }
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(0.5deg); }
+        }
+        .card-modal-hint {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+        }
+        @media (max-width: 767px) {
+            .card-modal-card { width: 260px; }
+            .card-modal-close { top: -12px; right: -8px; width: 36px; height: 36px; font-size: 20px; }
+        }
+
         /* Project card overlay */
         .project-overlay {
             background: linear-gradient(to top, rgba(10, 10, 15, 0.95) 0%, rgba(10, 10, 15, 0.4) 50%, transparent 100%);
@@ -647,7 +729,7 @@
     <nav class="theme-nav backdrop-blur-xl fixed w-full top-0 z-50 border-b overflow-x-hidden">
         <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center max-w-6xl">
             <a href="#" class="text-xl sm:text-2xl font-heading font-bold theme-text tracking-tight shrink-0">
-                ARYA<span class="gradient-text">.</span>
+                MasArya<span class="gradient-text">.ID</span>
             </a>
             
             <!-- Desktop Menu -->
@@ -776,10 +858,10 @@
                                 <h3 class="id-card-name">Arya Dwinata</h3>
                                 <p class="id-card-role">Web Developer</p>
                                 <div class="id-card-info">
-                                    <div><div class="lbl">ID No.</div><div class="val">AD-2025-001</div></div>
+                                    <div><div class="lbl">ID No.</div><div class="val">AD-2026-001</div></div>
                                     <div><div class="lbl">Status</div><div class="val"><span class="dot-active"></span>Active</div></div>
                                     <div><div class="lbl">Region</div><div class="val">NTB / Lombok</div></div>
-                                    <div><div class="lbl">Issued</div><div class="val">10.2025</div></div>
+                                    <div><div class="lbl">Issued</div><div class="val">10.2026</div></div>
                                 </div>
                             </div>
                             <div class="id-card-footer">
@@ -1274,7 +1356,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center gap-8">
                 <!-- Brand -->
                 <div class="text-center md:text-left">
-                    <h2 class="text-2xl font-heading font-bold theme-text mb-2">ARYA<span class="gradient-text">.</span></h2>
+                    <h2 class="text-2xl font-heading font-bold theme-text mb-2">MasArya<span class="gradient-text">.ID</span></h2>
                     <p class="text-sm theme-text-muted">Software Engineer & Web Developer</p>
                 </div>
 
@@ -1303,6 +1385,42 @@
             </div>
         </div>
     </footer>
+
+    <!-- Card Preview Modal -->
+    <div id="cardModal" class="card-modal" aria-hidden="true">
+        <div class="card-modal-backdrop"></div>
+        <div class="card-modal-content">
+            <button class="card-modal-close" aria-label="Tutup preview">&times;</button>
+            <div class="card-modal-card">
+                <div class="id-card">
+                    <span class="id-card-hole"></span>
+                    <div class="id-card-header">
+                        <div class="id-card-logo"><span class="dot"></span>ARYA<span style="opacity:0.6">.DEV</span></div>
+                        <span class="id-card-tag">STAFF</span>
+                    </div>
+                    <div class="id-card-body">
+                        <div class="id-card-photo" style="width:120px;height:120px;border-radius:18px;">
+                            <img src="https://putrabttstore.web.id/aryadua.jpg" alt="Arya Dwinata" draggable="false">
+                        </div>
+                        <h3 class="id-card-name" style="font-size:20px;margin-top:14px;">Arya Dwinata</h3>
+                        <p class="id-card-role" style="font-size:11px;margin-top:4px;">Web Developer</p>
+                        <div class="id-card-info" style="margin-top:16px;gap:8px 14px;">
+                            <div><div class="lbl" style="font-size:9px;">ID No.</div><div class="val" style="font-size:12px;">AD-2025-001</div></div>
+                            <div><div class="lbl" style="font-size:9px;">Status</div><div class="val" style="font-size:12px;"><span class="dot-active"></span>Active</div></div>
+                            <div><div class="lbl" style="font-size:9px;">Region</div><div class="val" style="font-size:12px;">NTB / Lombok</div></div>
+                            <div><div class="lbl" style="font-size:9px;">Issued</div><div class="val" style="font-size:12px;">10.2025</div></div>
+                        </div>
+                    </div>
+                    <div class="id-card-footer" style="margin:0 16px 14px;padding-top:12px;">
+                        <div class="id-card-chip" style="width:42px;height:32px;"></div>
+                        <span class="id-card-sig" style="font-size:22px;">Arya D.</span>
+                        <div class="id-card-qr" style="width:42px;height:42px;"></div>
+                    </div>
+                </div>
+            </div>
+            <p class="card-modal-hint">Klik di luar card atau tekan ESC untuk menutup</p>
+        </div>
+    </div>
 
     <!-- Tombol Kembali ke Atas -->
     <a href="#beranda" id="backToTop" class="fixed bottom-8 right-8 bg-primary hover:bg-primaryHover text-white w-12 h-12 rounded-xl flex items-center justify-center shadow-lg shadow-primary/25 transition-all opacity-0 invisible z-50 hover:-translate-y-1">
