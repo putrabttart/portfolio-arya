@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -64,6 +64,18 @@
     </script>
     
     <style>
+        /* Anti-copy: disable text selection globally */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
         /* Theme Variables */
         :root {
             --bg-body: #f8fafc;
@@ -172,6 +184,7 @@
                         radial-gradient(ellipse at 80% 20%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
                         radial-gradient(ellipse at 50% 80%, rgba(99, 102, 241, 0.04) 0%, transparent 50%);
             overflow: hidden;
+            overflow-x: clip;
         }
 
         /* Animated blobs */
@@ -513,6 +526,12 @@
         .ig-panel.active {
             display: block;
         }
+        /* Force Instagram embeds to be responsive */
+        .ig-panel .instagram-media,
+        .ig-panel iframe {
+            max-width: 100% !important;
+            min-width: 0 !important;
+        }
 
         /* Project card overlay */
         .project-overlay {
@@ -625,9 +644,9 @@
 <body class="font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-white">
 
     <!-- Navbar -->
-    <nav class="theme-nav backdrop-blur-xl fixed w-full top-0 z-50 border-b">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center max-w-6xl">
-            <a href="#" class="text-2xl font-heading font-bold theme-text tracking-tight">
+    <nav class="theme-nav backdrop-blur-xl fixed w-full top-0 z-50 border-b overflow-x-hidden">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center max-w-6xl">
+            <a href="#" class="text-xl sm:text-2xl font-heading font-bold theme-text tracking-tight shrink-0">
                 ARYA<span class="gradient-text">.</span>
             </a>
             
@@ -665,8 +684,8 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden theme-surface border-t theme-border absolute w-full left-0 shadow-2xl">
-            <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-medium">
+        <div id="mobile-menu" class="hidden theme-surface border-t theme-border absolute w-full left-0 shadow-2xl overflow-hidden">
+            <div class="flex flex-col px-4 sm:px-6 py-4 space-y-4 text-sm font-medium">
                 <a href="#beranda" class="mobile-link theme-text hover:text-primary">Beranda</a>
                 <a href="#tentang" class="mobile-link theme-text-muted hover:text-primary">Tentang</a>
                 <a href="#projek" class="mobile-link theme-text-muted hover:text-primary">Projek</a>
@@ -1210,9 +1229,9 @@
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
                     <!-- Ganti URL di bawah dengan URL post Instagram asli kamu -->
                     <!-- Format: https://www.instagram.com/p/KODE_POST/ -->
-                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DMpxyv4RhqR/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
-                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/C-cI1uLR5ud/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
-                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/C-cIkFhRkOd/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DMpxyv4RhqR/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:0;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/C-cI1uLR5ud/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:0;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/C-cIkFhRkOd/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:0;"></blockquote>
                 </div>
                 <div class="text-center mt-8">
                     <a href="https://www.instagram.com/masaryaaaaaaaaaa/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg">
@@ -1223,9 +1242,9 @@
 
             <div class="ig-panel" id="ig-bisnis">
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DYBr_lgCaY6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
-                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DYBsU1HCUed/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
-                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DYBsgO2CaD5/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DYBr_lgCaY6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:0;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DYBsU1HCUed/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:0;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DYBsgO2CaD5/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:0;"></blockquote>
                 </div>
                 <div class="text-center mt-8">
                     <a href="https://www.instagram.com/putrabttstore/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg">
@@ -1236,9 +1255,9 @@
 
             <div class="ig-panel" id="ig-design">
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DTBB-UkD_KT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
-                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DTBDICTj7cV/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
-                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DTBEdl0jzL9/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DTBB-UkD_KT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:0;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DTBDICTj7cV/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:0;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DTBEdl0jzL9/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:0;"></blockquote>
                 </div>
                 <div class="text-center mt-8">
                     <a href="https://www.instagram.com/putrabttart/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg">
@@ -1293,150 +1312,8 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="lanyard.js"></script>
+    <script src="main.js"></script>
+    <script src="protect.js"></script>
     <script async src="https://www.instagram.com/embed.js"></script>
-    <script>
-        // Inisialisasi Animasi AOS
-        AOS.init({
-            once: true,
-            offset: 50,
-            duration: 800,
-        });
-
-        // ===== Theme Toggle (Light / Dark Mode) =====
-        const themeToggleBtns = [
-            document.getElementById('theme-toggle'),
-            document.getElementById('theme-toggle-mobile')
-        ].filter(Boolean);
-
-        function applyTheme(theme) {
-            if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-            try { localStorage.setItem('theme', theme); } catch (e) {}
-        }
-
-        function toggleTheme() {
-            const isDark = document.documentElement.classList.contains('dark');
-            applyTheme(isDark ? 'light' : 'dark');
-        }
-
-        themeToggleBtns.forEach(btn => btn.addEventListener('click', toggleTheme));
-
-        // Sinkronisasi dengan preferensi sistem jika user belum memilih manual
-        const mql = window.matchMedia('(prefers-color-scheme: dark)');
-        if (mql.addEventListener) {
-            mql.addEventListener('change', (e) => {
-                if (!localStorage.getItem('theme')) {
-                    applyTheme(e.matches ? 'dark' : 'light');
-                }
-            });
-        }
-
-        // Script untuk Mobile Menu Hamburger
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        const links = document.querySelectorAll('.mobile-link');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Tutup menu saat link di-klik
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-            });
-        });
-
-        // Script untuk Tombol 'Kembali ke Atas'
-        const backToTopBtn = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.remove('opacity-0', 'invisible');
-                backToTopBtn.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopBtn.classList.add('opacity-0', 'invisible');
-                backToTopBtn.classList.remove('opacity-100', 'visible');
-            }
-        });
-
-        // ===== Typing effect untuk role di hero =====
-        (function () {
-            const target = document.getElementById('typed-role');
-            if (!target) return;
-            const roles = [
-                'Web Developer',
-                'PHP & MySQL Specialist',
-                'UI/UX Enthusiast',
-                'Software Engineer',
-                'Digital Creator'
-            ];
-            let roleIdx = 0, charIdx = 0, deleting = false;
-            const typeSpeed = 90, deleteSpeed = 45, pauseEnd = 1400, pauseStart = 350;
-
-            function tick() {
-                const current = roles[roleIdx];
-                if (!deleting) {
-                    target.textContent = current.slice(0, ++charIdx);
-                    if (charIdx === current.length) {
-                        deleting = true;
-                        return setTimeout(tick, pauseEnd);
-                    }
-                } else {
-                    target.textContent = current.slice(0, --charIdx);
-                    if (charIdx === 0) {
-                        deleting = false;
-                        roleIdx = (roleIdx + 1) % roles.length;
-                        return setTimeout(tick, pauseStart);
-                    }
-                }
-                setTimeout(tick, deleting ? deleteSpeed : typeSpeed);
-            }
-            tick();
-        })();
-
-        // ===== Instagram Tab Switching =====
-        const igTabs = document.querySelectorAll('.ig-tab');
-        const igPanels = document.querySelectorAll('.ig-panel');
-
-        igTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                igTabs.forEach(t => t.classList.remove('active'));
-                igPanels.forEach(p => p.classList.remove('active'));
-                tab.classList.add('active');
-                const target = document.getElementById('ig-' + tab.dataset.tab);
-                if (target) {
-                    target.classList.add('active');
-                    // Re-process Instagram embeds when tab becomes visible
-                    if (window.instgrm) window.instgrm.Embeds.process();
-                }
-            });
-        });
-
-        // Active nav link on scroll (theme-aware)
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('theme-text');
-                link.classList.add('theme-text-muted');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('theme-text');
-                    link.classList.remove('theme-text-muted');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
