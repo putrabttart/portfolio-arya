@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arya Dwinata | Professional Portfolio</title>
+
+    <!-- Theme Init (anti-FOUC) - harus dijalankan sebelum body render -->
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme');
+                var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                var theme = saved || (prefersDark ? 'dark' : 'light');
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                }
+            } catch (e) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+
+    <!-- Google Fonts: Inter + Sora -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Konfigurasi Tailwind Custom -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Sora', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6366f1',
+                        primaryHover: '#4f46e5',
+                        accent: '#06b6d4',
+                        dark: '#0a0a0f',
+                        darker: '#06060a',
+                        surface: '#12121a',
+                        surfaceLight: '#1a1a2e',
+                        card: '#16161f',
+                        cardHover: '#1e1e2d',
+                        muted: '#94a3b8',
+                        body: '#0a0a0f',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Theme Variables */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-surface-light: #f1f5f9;
+            --bg-nav: rgba(255, 255, 255, 0.85);
+            --bg-darker: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --timeline-border: #12121a;
+            --scrollbar-track: #f1f5f9;
+            --scrollbar-thumb: #cbd5e1;
+        }
+        .dark {
+            --bg-body: #0a0a0f;
+            --bg-surface: #12121a;
+            --bg-surface-light: #1a1a2e;
+            --bg-nav: rgba(10, 10, 15, 0.8);
+            --bg-darker: #06060a;
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.05);
+            --timeline-border: #12121a;
+            --scrollbar-track: #0a0a0f;
+            --scrollbar-thumb: #2d2d3d;
+        }
+
+        /* Apply theme */
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-secondary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Theme-aware components */
+        .theme-nav {
+            background-color: var(--bg-nav);
+            border-color: var(--border-color);
+        }
+        .theme-surface {
+            background-color: var(--bg-surface);
+            border-color: var(--border-color);
+        }
+        .theme-surface-light {
+            background-color: var(--bg-surface-light);
+        }
+        .theme-darker {
+            background-color: var(--bg-darker);
+        }
+        .theme-text {
+            color: var(--text-primary);
+        }
+        .theme-text-secondary {
+            color: var(--text-secondary);
+        }
+        .theme-text-muted {
+            color: var(--text-muted);
+        }
+        .theme-border {
+            border-color: var(--border-color);
+        }
+
+        /* Glow effect */
+        .glow-border {
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.03);
+            transition: all 0.3s ease;
+        }
+        .glow-border:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.08);
+        }
+
+        /* Timeline dot */
+        .timeline-dot {
+            position: absolute;
+            left: -33px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            border: 3px solid var(--bg-surface);
+        }
+        @media (min-width: 768px) {
+            .timeline-dot {
+                left: -41px;
+            }
+        }
+
+        /* Animated gradient background */
+        .hero-gradient {
+            position: relative;
+            background: radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(99, 102, 241, 0.04) 0%, transparent 50%);
+            overflow: hidden;
+        }
+
+        /* Animated blobs */
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 0;
+            will-change: transform;
+        }
+        .blob-1 {
+            width: 380px; height: 380px;
+            background: radial-gradient(circle, rgba(99,102,241,0.55), transparent 70%);
+            top: -80px; left: -80px;
+            animation: blobMove1 18s ease-in-out infinite;
+        }
+        .blob-2 {
+            width: 320px; height: 320px;
+            background: radial-gradient(circle, rgba(6,182,212,0.5), transparent 70%);
+            bottom: -60px; right: -60px;
+            animation: blobMove2 22s ease-in-out infinite;
+        }
+        .blob-3 {
+            width: 260px; height: 260px;
+            background: radial-gradient(circle, rgba(236,72,153,0.35), transparent 70%);
+            top: 50%; left: 40%;
+            animation: blobMove3 26s ease-in-out infinite;
+        }
+        @keyframes blobMove1 {
+            0%,100% { transform: translate(0,0) scale(1); }
+            33%     { transform: translate(60px,40px) scale(1.1); }
+            66%     { transform: translate(-30px,80px) scale(0.95); }
+        }
+        @keyframes blobMove2 {
+            0%,100% { transform: translate(0,0) scale(1); }
+            50%     { transform: translate(-80px,-50px) scale(1.15); }
+        }
+        @keyframes blobMove3 {
+            0%,100% { transform: translate(0,0) scale(1); }
+            33%     { transform: translate(-90px,-40px) scale(1.1); }
+            66%     { transform: translate(70px,-70px) scale(0.9); }
+        }
+
+        @media (max-width: 767px) {
+            .blob-1 { width: 240px; height: 240px; top: -60px; left: -60px; }
+            .blob-2 { width: 200px; height: 200px; bottom: -40px; right: -40px; }
+            .blob-3 { width: 180px; height: 180px; }
+        }
+
+        /* Grid pattern overlay */
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 30%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 30%, transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Hero content sits above blobs */
+        .hero-gradient > .relative-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Typing cursor */
+        .typed-cursor {
+            display: inline-block;
+            width: 3px;
+            margin-left: 2px;
+            background: linear-gradient(180deg, #6366f1, #06b6d4);
+            animation: blink 1s step-end infinite;
+            border-radius: 2px;
+            vertical-align: middle;
+            height: 1em;
+        }
+        @keyframes blink {
+            0%,49% { opacity: 1; }
+            50%,100% { opacity: 0; }
+        }
+
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            font-weight: 600;
+            z-index: 1;
+            opacity: 0.8;
+        }
+        .scroll-indicator .mouse {
+            width: 24px; height: 38px;
+            border: 2px solid var(--text-muted);
+            border-radius: 14px;
+            position: relative;
+            opacity: 0.7;
+        }
+        .scroll-indicator .mouse::before {
+            content: '';
+            position: absolute;
+            top: 6px; left: 50%;
+            width: 3px; height: 7px;
+            background: linear-gradient(180deg, #6366f1, #06b6d4);
+            border-radius: 2px;
+            transform: translateX(-50%);
+            animation: scrollDot 1.6s ease-in-out infinite;
+        }
+        @keyframes scrollDot {
+            0%   { transform: translate(-50%, 0); opacity: 1; }
+            80%  { transform: translate(-50%, 14px); opacity: 0; }
+            100% { transform: translate(-50%, 0); opacity: 0; }
+        }
+
+        /* Reduce motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-blob, .scroll-indicator .mouse::before {
+                animation: none !important;
+            }
+        }
+
+        /* ===== Lanyard ID Card ===== */
+        .lanyard-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+            height: 480px;
+            margin: 0 auto;
+        }
+        .lanyard-wrapper canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .lanyard-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 210px;
+            cursor: grab;
+            z-index: 3;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+        }
+        .lanyard-card.dragging { cursor: grabbing; }
+
+        .id-card {
+            width: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid rgba(99,102,241,0.15);
+            box-shadow:
+                0 25px 50px -12px rgba(15, 23, 42, 0.3),
+                0 12px 24px -8px rgba(99, 102, 241, 0.2),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+        }
+        .id-card-header {
+            height: 56px;
+            background: linear-gradient(135deg, #4f46e5, #6366f1, #06b6d4);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 14px;
+            position: relative;
+        }
+        .id-card-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(-45deg, transparent 0, transparent 5px, rgba(255,255,255,0.05) 5px, rgba(255,255,255,0.05) 10px);
+        }
+        .id-card-logo {
+            position: relative;
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: 14px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .id-card-logo .dot { width: 7px; height: 7px; background: #fff; border-radius: 2px; }
+        .id-card-tag {
+            position: relative;
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #fff;
+            background: rgba(255,255,255,0.2);
+            padding: 3px 7px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .id-card-hole {
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 10px;
+            background: rgba(15,23,42,0.5);
+            border-radius: 5px;
+            box-shadow: inset 0 2px 3px rgba(0,0,0,0.5);
+            z-index: 5;
+        }
+        .id-card-body {
+            padding: 16px 14px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .id-card-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.5), 0 8px 20px rgba(99,102,241,0.25);
+        }
+        .id-card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+        .id-card-name {
+            margin-top: 10px;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #0f172a;
+        }
+        .id-card-role {
+            margin-top: 2px;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #6366f1, #06b6d4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .id-card-info {
+            width: 100%;
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px 8px;
+            font-family: ui-monospace, monospace;
+            text-align: left;
+        }
+        .id-card-info .lbl { font-size: 7px; color: rgba(15,23,42,0.45); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; }
+        .id-card-info .val { font-size: 9px; color: #0f172a; font-weight: 700; margin-top: 1px; }
+        .id-card-info .val .dot-active {
+            display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+            background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.7); margin-right: 3px;
+            animation: pulseDot 1.6s ease-in-out infinite;
+        }
+        @keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(0.8)} }
+        .id-card-footer {
+            margin: 0 12px 10px;
+            padding-top: 8px;
+            border-top: 1px dashed rgba(15,23,42,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .id-card-chip {
+            width: 34px; height: 26px; border-radius: 4px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #b45309);
+            position: relative;
+            box-shadow: 0 2px 4px rgba(245,158,11,0.4), inset 0 1px 0 rgba(255,255,255,0.4);
+        }
+        .id-card-chip::before {
+            content: ''; position: absolute; inset: 3px; border-radius: 2px;
+            background: linear-gradient(90deg, transparent 28%, rgba(0,0,0,0.2) 30%, transparent 32%),
+                        linear-gradient(0deg, transparent 45%, rgba(0,0,0,0.2) 47%, transparent 49%);
+        }
+        .id-card-sig {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 16px; color: #4f46e5; transform: rotate(-3deg); opacity: 0.9;
+        }
+        .id-card-qr {
+            width: 34px; height: 34px; border-radius: 5px; border: 2px solid #0f172a;
+            background: #fff;
+            background-image: radial-gradient(#0f172a 1px, transparent 1px), radial-gradient(#0f172a 1px, transparent 1px);
+            background-size: 3px 3px; background-position: 0 0, 1.5px 1.5px;
+        }
+
+        @media (max-width: 767px) {
+            .lanyard-wrapper { max-width: 260px; height: 400px; }
+            .lanyard-card { width: 180px; }
+            .id-card-header { height: 48px; }
+            .id-card-photo { width: 68px; height: 68px; }
+            .id-card-name { font-size: 12px; }
+            .id-card-body { padding: 12px 10px 10px; }
+        }
+
+        /* Project card overlay */
+        .project-overlay {
+            background: linear-gradient(to top, rgba(10, 10, 15, 0.95) 0%, rgba(10, 10, 15, 0.4) 50%, transparent 100%);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+
+        /* Smooth transitions */
+        * {
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Nav active indicator */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6366f1, #06b6d4);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            border-radius: 12px;
+            background: var(--bg-surface-light);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            padding: 0;
+        }
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #6366f1;
+            transition: transform 0.3s ease;
+        }
+        .dark .theme-toggle::after {
+            transform: translateX(20px);
+        }
+        .theme-toggle .icon-sun,
+        .theme-toggle .icon-moon {
+            position: absolute;
+            font-size: 10px;
+            color: #fff;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        .theme-toggle .icon-sun {
+            left: 6px;
+            opacity: 1;
+        }
+        .theme-toggle .icon-moon {
+            right: 6px;
+            opacity: 0.4;
+            color: var(--text-muted);
+        }
+        .dark .theme-toggle .icon-sun {
+            opacity: 0.4;
+            color: var(--text-muted);
+        }
+        .dark .theme-toggle .icon-moon {
+            opacity: 1;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="theme-nav backdrop-blur-xl fixed w-full top-0 z-50 border-b">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center max-w-6xl">
+            <a href="#" class="text-2xl font-heading font-bold theme-text tracking-tight">
+                ARYA<span class="gradient-text">.</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#beranda" class="nav-link theme-text transition-colors">Beranda</a>
+                <a href="#tentang" class="nav-link theme-text-muted hover:text-primary transition-colors">Tentang</a>
+                <a href="#projek" class="nav-link theme-text-muted hover:text-primary transition-colors">Projek</a>
+                <a href="#pengalaman" class="nav-link theme-text-muted hover:text-primary transition-colors">Pengalaman</a>
+                <a href="#pendidikan" class="nav-link theme-text-muted hover:text-primary transition-colors">Pendidikan</a>
+            </div>
+
+            <div class="hidden md:flex items-center gap-4">
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                    <i class="fa-solid fa-sun icon-sun"></i>
+                    <i class="fa-solid fa-moon icon-moon"></i>
+                </button>
+
+                <a href="mailto:putrabttart@gmail.com" class="bg-primary hover:bg-primaryHover text-white px-5 py-2.5 rounded-lg transition-all text-sm font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/40">
+                    Hubungi Saya
+                </a>
+            </div>
+
+            <!-- Mobile Buttons -->
+            <div class="md:hidden flex items-center gap-3">
+                <button id="theme-toggle-mobile" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-sun icon-sun"></i>
+                    <i class="fa-solid fa-moon icon-moon"></i>
+                </button>
+                <button id="mobile-menu-btn" class="theme-text focus:outline-none">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden theme-surface border-t theme-border absolute w-full left-0 shadow-2xl">
+            <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-medium">
+                <a href="#beranda" class="mobile-link theme-text hover:text-primary">Beranda</a>
+                <a href="#tentang" class="mobile-link theme-text-muted hover:text-primary">Tentang</a>
+                <a href="#projek" class="mobile-link theme-text-muted hover:text-primary">Projek</a>
+                <a href="#pengalaman" class="mobile-link theme-text-muted hover:text-primary">Pengalaman</a>
+                <a href="#pendidikan" class="mobile-link theme-text-muted hover:text-primary">Pendidikan</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header / Hero Section -->
+    <section id="beranda" class="hero-gradient pt-28 pb-12 md:pt-44 md:pb-32 px-6 md:min-h-screen flex items-center relative">
+        <!-- Decorative background -->
+        <div class="hero-grid"></div>
+        <span class="hero-blob blob-1"></span>
+        <span class="hero-blob blob-2"></span>
+        <span class="hero-blob blob-3"></span>
+
+        <div class="relative-content max-w-6xl mx-auto w-full">
+        <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12 w-full">
+            <!-- Text Content -->
+            <div class="w-full md:w-3/5 text-center md:text-left" data-aos="fade-right" data-aos-duration="1000">
+                <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold tracking-wide mb-6">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                    </span>
+                    AVAILABLE FOR WORK
+                </div>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-bold theme-text leading-tight mb-4">
+                    Halo, Saya <br/>
+                    <span class="gradient-text">Arya Dwinata</span>
+                </h1>
+
+                <!-- Typing role -->
+                <div class="text-lg md:text-xl font-medium theme-text mb-6 h-7 flex items-center justify-center md:justify-start">
+                    <span class="theme-text-muted mr-2">&gt;</span>
+                    <span id="typed-role" class="gradient-text font-heading font-semibold"></span><span class="typed-cursor"></span>
+                </div>
+
+                <p class="text-lg theme-text-muted mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
+                    Membangun aplikasi web yang fungsional dan pengalaman digital yang bermakna. Fokus pada solusi yang berdampak nyata melalui kode yang bersih dan terstruktur.
+                </p>
+
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 mb-10">
+                    <a href="#projek" class="bg-primary hover:bg-primaryHover text-white px-7 py-3.5 rounded-lg transition-all font-semibold shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 flex items-center group">
+                        Lihat Projek <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="#tentang" class="theme-surface theme-text border theme-border px-7 py-3.5 rounded-lg transition-all font-medium hover:-translate-y-0.5 flex items-center hover:border-primary/30">
+                        Tentang Saya
+                    </a>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                    <a href="https://github.com/aryadwinata" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/aryadwinata" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://instagram.com/aryadwinata" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/6282340915319" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-green-500 hover:border-green-500/50 hover:-translate-y-0.5 transition-all">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:putrabttart@gmail.com" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ID Card Lanyard -->
+            <div class="w-full md:w-2/5 flex justify-center" data-aos="fade-left" data-aos-duration="1000">
+                <div class="lanyard-wrapper" id="lanyardWrapper">
+                    <canvas id="lanyardCanvas"></canvas>
+                    <div class="lanyard-card" id="lanyardCard">
+                        <div class="id-card">
+                            <span class="id-card-hole"></span>
+                            <div class="id-card-header">
+                                <div class="id-card-logo"><span class="dot"></span>ARYA<span style="opacity:0.6">.DEV</span></div>
+                                <span class="id-card-tag">STAFF</span>
+                            </div>
+                            <div class="id-card-body">
+                                <div class="id-card-photo">
+                                    <img src="https://putrabttstore.web.id/aryadua.jpg" alt="Arya Dwinata" draggable="false">
+                                </div>
+                                <h3 class="id-card-name">Arya Dwinata</h3>
+                                <p class="id-card-role">Web Developer</p>
+                                <div class="id-card-info">
+                                    <div><div class="lbl">ID No.</div><div class="val">AD-2025-001</div></div>
+                                    <div><div class="lbl">Status</div><div class="val"><span class="dot-active"></span>Active</div></div>
+                                    <div><div class="lbl">Region</div><div class="val">NTB / Lombok</div></div>
+                                    <div><div class="lbl">Issued</div><div class="val">10.2025</div></div>
+                                </div>
+                            </div>
+                            <div class="id-card-footer">
+                                <div class="id-card-chip"></div>
+                                <span class="id-card-sig">Arya D.</span>
+                                <div class="id-card-qr"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <a href="#tentang" class="scroll-indicator hidden md:flex hover:opacity-100 transition-opacity" aria-label="Scroll down">
+            <span>SCROLL</span>
+            <span class="mouse"></span>
+        </a>
+    </section>
+
+    <!-- Tentang Saya -->
+    <section id="tentang" class="py-24 border-t theme-border">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-12 items-start">
+                <div class="md:w-1/3" data-aos="fade-up">
+                    <h2 class="text-3xl font-heading font-bold theme-text mb-2">Tentang Saya</h2>
+                    <div class="w-16 h-1 bg-gradient-to-r from-primary to-accent mb-6 rounded-full"></div>
+                    <p class="theme-text-muted font-medium">Lulusan S1 Rekayasa Perangkat Lunak dengan passion di pengembangan web dan solusi digital.</p>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <div class="theme-surface border theme-border rounded-xl p-4 text-center">
+                            <div class="text-2xl font-bold theme-text">3+</div>
+                            <div class="text-xs theme-text-muted mt-1">Tahun Pengalaman</div>
+                        </div>
+                        <div class="theme-surface border theme-border rounded-xl p-4 text-center">
+                            <div class="text-2xl font-bold theme-text">10+</div>
+                            <div class="text-xs theme-text-muted mt-1">Projek Selesai</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="theme-surface border theme-border rounded-2xl p-8">
+                        <p class="text-lg theme-text-secondary leading-relaxed">
+                            Saya seorang Web Developer dengan latar belakang Rekayasa Perangkat Lunak. Keahlian utama saya ada di <strong class="theme-text">pengembangan web menggunakan PHP & MySQL</strong>, mulai dari perancangan database, arsitektur sistem, hingga implementasi front-end.
+                        </p>
+                        <br>
+                        <p class="text-lg theme-text-secondary leading-relaxed">
+                            Di luar coding, saya juga menguasai <strong class="theme-text">desain grafis dan editing video</strong> yang mendukung kebutuhan branding dan konten digital. Terbiasa bekerja dalam tim maupun mandiri, dengan kemampuan adaptasi cepat terhadap teknologi dan tools baru.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projek" class="py-24 border-t theme-border">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold theme-text mb-3">Projek Saya</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4 rounded-full"></div>
+                <p class="theme-text-muted max-w-md mx-auto">Beberapa projek yang telah saya kerjakan</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Project 1 - PBS Store -->
+                <div class="group relative theme-surface border theme-border rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="0">
+                    <div class="aspect-video theme-surface-light overflow-hidden">
+                        <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fstore.pbs.web.id?w=600&h=400" alt="PBS Store - Toko Produk Digital" loading="lazy" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="px-2.5 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full">PHP</span>
+                            <span class="px-2.5 py-0.5 bg-accent/10 text-accent text-xs font-medium rounded-full">MySQL</span>
+                            <span class="px-2.5 py-0.5 bg-pink-500/10 text-pink-400 text-xs font-medium rounded-full">QRIS</span>
+                        </div>
+                        <h3 class="text-lg font-bold theme-text mb-2 group-hover:text-primary transition-colors">Putra BTT Store</h3>
+                        <p class="text-sm theme-text-muted leading-relaxed mb-4">Toko online produk digital premium (Netflix, YouTube, Spotify, Canva Pro) dengan pengiriman instan, pembayaran QRIS otomatis, dan garansi masa pakai.</p>
+                        <div class="flex gap-3">
+                            <a href="https://store.pbs.web.id/" target="_blank" rel="noopener" class="text-sm theme-text-muted hover:text-primary flex items-center gap-1.5 transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Site
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 - Dwi Store (Reseller) -->
+                <div class="group relative theme-surface border theme-border rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="aspect-video theme-surface-light overflow-hidden">
+                        <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fpbs.web.id%2Fdwistore?w=600&h=400" alt="Dwi Store - Web Reseller" loading="lazy" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="px-2.5 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full">PHP</span>
+                            <span class="px-2.5 py-0.5 bg-accent/10 text-accent text-xs font-medium rounded-full">MySQL</span>
+                            <span class="px-2.5 py-0.5 bg-amber-500/10 text-amber-400 text-xs font-medium rounded-full">Multi-Tenant</span>
+                        </div>
+                        <h3 class="text-lg font-bold theme-text mb-2 group-hover:text-primary transition-colors">Dwi Store - Web Reseller</h3>
+                        <p class="text-sm theme-text-muted leading-relaxed mb-4">Storefront reseller dengan branding mandiri di atas platform pusat. Reseller dapat atur margin sendiri, terima komisi otomatis, dan pengiriman item digital instan ke pembeli.</p>
+                        <div class="flex gap-3">
+                            <a href="https://pbs.web.id/dwistore" target="_blank" rel="noopener" class="text-sm theme-text-muted hover:text-primary flex items-center gap-1.5 transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Site
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 - Blog PBS -->
+                <div class="group relative theme-surface border theme-border rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="aspect-video theme-surface-light overflow-hidden">
+                        <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fblog.pbs.web.id?w=600&h=400" alt="Blog PBS - Tips & Panduan Produk Digital" loading="lazy" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="px-2.5 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full">PHP</span>
+                            <span class="px-2.5 py-0.5 bg-accent/10 text-accent text-xs font-medium rounded-full">CMS</span>
+                            <span class="px-2.5 py-0.5 bg-pink-500/10 text-pink-400 text-xs font-medium rounded-full">SEO</span>
+                        </div>
+                        <h3 class="text-lg font-bold theme-text mb-2 group-hover:text-primary transition-colors">PBS Blog - Tips & Panduan</h3>
+                        <p class="text-sm theme-text-muted leading-relaxed mb-4">Blog informasi seputar produk digital dengan kategori Promo, Tips & Trik, dan Umum. Berisi artikel panduan untuk membantu pengguna memilih layanan premium yang tepat.</p>
+                        <div class="flex gap-3">
+                            <a href="https://blog.pbs.web.id/" target="_blank" rel="noopener" class="text-sm theme-text-muted hover:text-primary flex items-center gap-1.5 transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Site
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 - Landing Page Reseller -->
+                <div class="group relative theme-surface border theme-border rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="0">
+                    <div class="aspect-video theme-surface-light overflow-hidden">
+                        <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fpbs.web.id?w=600&h=400" alt="Landing Page Reseller PBS" loading="lazy" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="px-2.5 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full">HTML</span>
+                            <span class="px-2.5 py-0.5 bg-accent/10 text-accent text-xs font-medium rounded-full">Tailwind</span>
+                            <span class="px-2.5 py-0.5 bg-amber-500/10 text-amber-400 text-xs font-medium rounded-full">Landing Page</span>
+                        </div>
+                        <h3 class="text-lg font-bold theme-text mb-2 group-hover:text-primary transition-colors">Landing Page Reseller</h3>
+                        <p class="text-sm theme-text-muted leading-relaxed mb-4">Landing page promosi pendaftaran reseller Putra BTT Store. Mengangkat keuntungan, alur 3 langkah pendaftaran, FAQ, dan call-to-action terhubung langsung ke WhatsApp admin.</p>
+                        <div class="flex gap-3">
+                            <a href="https://pbs.web.id/" target="_blank" rel="noopener" class="text-sm theme-text-muted hover:text-primary flex items-center gap-1.5 transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Site
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 - Field Digital -->
+                <div class="group relative theme-surface border theme-border rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="aspect-video theme-surface-light overflow-hidden">
+                        <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Ffield-digital.vercel.app?w=600&h=400" alt="FieldDigital - Booking Lapangan Online" loading="lazy" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="px-2.5 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full">JavaScript</span>
+                            <span class="px-2.5 py-0.5 bg-accent/10 text-accent text-xs font-medium rounded-full">Tailwind</span>
+                            <span class="px-2.5 py-0.5 bg-pink-500/10 text-pink-400 text-xs font-medium rounded-full">Vercel</span>
+                        </div>
+                        <h3 class="text-lg font-bold theme-text mb-2 group-hover:text-primary transition-colors">FieldDigital - Booking Lapangan</h3>
+                        <p class="text-sm theme-text-muted leading-relaxed mb-4">Platform digitalisasi lapangan olahraga. Booking online 24/7, jadwal real-time, notifikasi Telegram ke admin, pembayaran QRIS / e-wallet, dan dashboard pengelola yang lengkap.</p>
+                        <div class="flex gap-3">
+                            <a href="https://field-digital.vercel.app/" target="_blank" rel="noopener" class="text-sm theme-text-muted hover:text-primary flex items-center gap-1.5 transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Site
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 - Katalog Produk Digital -->
+                <div class="group relative theme-surface border theme-border rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="aspect-video theme-surface-light overflow-hidden">
+                        <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fputrabttstore.web.id?w=600&h=400" alt="Putra Btt Store - Katalog Produk Digital" loading="lazy" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="px-2.5 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full">HTML</span>
+                            <span class="px-2.5 py-0.5 bg-accent/10 text-accent text-xs font-medium rounded-full">JavaScript</span>
+                            <span class="px-2.5 py-0.5 bg-amber-500/10 text-amber-400 text-xs font-medium rounded-full">Katalog</span>
+                        </div>
+                        <h3 class="text-lg font-bold theme-text mb-2 group-hover:text-primary transition-colors">Katalog Produk Digital</h3>
+                        <p class="text-sm theme-text-muted leading-relaxed mb-4">Website katalog produk digital Putra Btt Store. Menampilkan kategori (Streaming, Desain, AI Tools, Produktivitas) dengan alur checkout via WhatsApp dan informasi varian harga lengkap.</p>
+                        <div class="flex gap-3">
+                            <a href="https://putrabttstore.web.id/" target="_blank" rel="noopener" class="text-sm theme-text-muted hover:text-primary flex items-center gap-1.5 transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Site
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pengalaman Kerja (Timeline) -->
+    <section id="pengalaman" class="py-24 border-t theme-border">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold theme-text mb-3">Pengalaman Kerja & Magang</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="relative border-l-2 theme-border ml-6 md:ml-8 pl-8 md:pl-10 space-y-12">
+                
+                <!-- Item 1 -->
+                <div class="relative" data-aos="fade-up">
+                    <div class="timeline-dot"></div>
+                    <div class="theme-surface glow-border p-6 rounded-xl transition-all duration-300">
+                        <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full mb-3">Sep 2024 - Des 2024</span>
+                        <h3 class="text-xl font-bold theme-text">PDD dan Tim Media Kelompok Magang</h3>
+                        <p class="text-sm font-semibold theme-text-muted mb-4">Kampus Merdeka Kemendikbud RI | PT. Amati Karya Indonesia</p>
+                        <ul class="list-disc list-inside space-y-2 theme-text-muted text-sm leading-relaxed">
+                            <li>Membuat dan mendokumentasikan kegiatan kelompok dalam bentuk foto maupun video, serta mengelola publikasi melalui media sosial.</li>
+                            <li>Berpartisipasi dalam penyusunan presentasi, laporan mingguan, dan laporan bulanan untuk kebutuhan evaluasi magang.</li>
+                            <li>Mengarsipkan seluruh dokumen penting secara online agar lebih terstruktur dan mudah diakses.</li>
+                            <li>Mencari serta menjalin kerja sama dengan media partner dalam proyek kolaborasi Orlant Festival.</li>
+                            <li>Mendesain berbagai kebutuhan publikasi dan administrasi (poster, banner, flyer, sertifikat, proposal, dll).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="relative" data-aos="fade-up">
+                    <div class="timeline-dot"></div>
+                    <div class="theme-surface glow-border p-6 rounded-xl transition-all duration-300">
+                        <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full mb-3">Agu 2023 - Des 2023</span>
+                        <h3 class="text-xl font-bold theme-text">Ketua Kelompok Kampus Mengajar</h3>
+                        <p class="text-sm font-semibold theme-text-muted mb-4">Kampus Merdeka Kemendikbud RI | SDN Tandek</p>
+                        <ul class="list-disc list-inside space-y-2 theme-text-muted text-sm leading-relaxed">
+                            <li>Memimpin, mengoordinasikan, dan bertanggung jawab terhadap seluruh program kerja dan kinerja anggota tim.</li>
+                            <li>Membantu sekolah adaptasi teknologi dalam proses pembelajaran siswa.</li>
+                            <li>Menjadi fasilitator kegiatan AKM (Asesmen Kompetensi Minimum) di SDN Tandek, Jonggat, Lombok Tengah.</li>
+                            <li>Membantu guru dalam proses pembelajaran dengan fokus pada peningkatan literasi dan numerasi siswa.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="relative" data-aos="fade-up">
+                    <div class="timeline-dot"></div>
+                    <div class="theme-surface glow-border p-6 rounded-xl transition-all duration-300">
+                        <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full mb-3">Jul 2019 - Sep 2019</span>
+                        <h3 class="text-xl font-bold theme-text">HardCopy Team (Praktik Kerja Lapangan)</h3>
+                        <p class="text-sm font-semibold theme-text-muted mb-4">PT. Federal International Finance</p>
+                        <ul class="list-disc list-inside space-y-2 theme-text-muted text-sm leading-relaxed">
+                            <li>Mengorganisir dan menyusun dokumen-dokumen fisik perusahaan sesuai dengan standar prosedur operasional.</li>
+                            <li>Memasukkan data (Data Entry) ke dalam sistem komputer dan basis data perusahaan.</li>
+                            <li>Melakukan pengarsipan, pengindeksan, dan penataan ulang dokumen.</li>
+                            <li>Memeriksa keakuratan data dalam dokumen dan memastikan konsistensi informasi.</li>
+                            <li>Mengelola file digital termasuk penyusunan struktur folder dan menjaga keamanan data elektronik.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pengalaman Organisasi -->
+    <section id="organisasi" class="py-24 border-t theme-border">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold theme-text mb-3">Pengalaman Organisasi</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Org 1 -->
+                <div class="theme-surface glow-border p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent text-white rounded-xl flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="text-lg font-bold theme-text mb-1">Ketua Umum KKN</h3>
+                    <p class="text-primary text-sm font-semibold mb-4">Desa Selebung | Feb - Mar 2025</p>
+                    <p class="text-sm theme-text-muted leading-relaxed">
+                        Memimpin program kerja KKN, menyelenggarakan seminar literasi digital remaja, hingga memproduksi podcast desa "Selebung Talk's".
+                    </p>
+                </div>
+
+                <!-- Org 2 -->
+                <div class="theme-surface glow-border p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent text-white rounded-xl flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <h3 class="text-lg font-bold theme-text mb-1">Ketua Umum</h3>
+                    <p class="text-primary text-sm font-semibold mb-4">Aliansi Pemuda Dusun Jereneng | 2023 - 2025</p>
+                    <p class="text-sm theme-text-muted leading-relaxed">
+                        Mengoordinasikan kegiatan pemuda, menjadi penghubung dengan tokoh masyarakat, dan mengorganisir acara sosial serta keagamaan.
+                    </p>
+                </div>
+
+                <!-- Org 3 -->
+                <div class="theme-surface glow-border p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent text-white rounded-xl flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </div>
+                    <h3 class="text-lg font-bold theme-text mb-1">Sekretaris Umum</h3>
+                    <p class="text-primary text-sm font-semibold mb-4">UKM Entrepreneur UTM | 2023 - 2024</p>
+                    <p class="text-sm theme-text-muted leading-relaxed">
+                        Mengelola administrasi dan surat-menyurat, mengatur jadwal, hingga mendesain konten media sosial dan materi promosi UKM.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pendidikan & Keahlian -->
+    <section id="pendidikan" class="py-24 border-t theme-border">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16">
+                
+                <!-- Pendidikan -->
+                <div data-aos="fade-right">
+                    <h2 class="text-2xl font-heading font-bold theme-text mb-2">Riwayat Pendidikan</h2>
+                    <div class="w-12 h-1 bg-gradient-to-r from-primary to-accent mb-10 rounded-full"></div>
+                    
+                    <div class="space-y-6">
+                        <div class="theme-surface glow-border p-6 rounded-xl flex gap-4 transition-all duration-300">
+                            <div class="hidden sm:flex w-14 h-14 bg-primary/10 text-primary rounded-xl items-center justify-center shrink-0">
+                                <i class="fa-solid fa-graduation-cap text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold theme-text text-lg">Universitas Teknologi Mataram</h3>
+                                <p class="text-primary text-sm font-semibold mb-3">S1 Rekayasa Perangkat Lunak (2021 - 2025)</p>
+                                <ul class="text-sm theme-text-muted list-disc list-inside space-y-1">
+                                    <li>Analisis Perancangan Sistem & Perangkat Lunak</li>
+                                    <li>Desain UI/UX</li>
+                                    <li>Pengembangan Web (Web Development)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="theme-surface glow-border p-6 rounded-xl flex gap-4 transition-all duration-300">
+                            <div class="hidden sm:flex w-14 h-14 bg-primary/10 text-primary rounded-xl items-center justify-center shrink-0">
+                                <i class="fa-solid fa-school text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold theme-text text-lg">SMK Negeri 2 Kuripan</h3>
+                                <p class="text-primary text-sm font-semibold mb-3">Rekayasa Perangkat Lunak (2019 - 2021)</p>
+                                <ul class="text-sm theme-text-muted list-disc list-inside space-y-1">
+                                    <li>Komputer & Jaringan Dasar</li>
+                                    <li>Pemrograman Dasar</li>
+                                    <li>Pengembangan Web (Web Development)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Keahlian & Info Tambahan -->
+                <div data-aos="fade-left">
+                    <h2 class="text-2xl font-heading font-bold theme-text mb-2">Tech Stack & Tools</h2>
+                    <div class="w-12 h-1 bg-gradient-to-r from-primary to-accent mb-10 rounded-full"></div>
+
+                    <div class="theme-surface glow-border p-8 rounded-xl transition-all duration-300 space-y-8">
+                        
+                        <!-- Programming & Development -->
+                        <div>
+                            <h3 class="font-bold theme-text mb-4 flex items-center"><i class="fa-solid fa-code text-primary mr-2"></i> Development</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 bg-primary/10 text-primary rounded-lg text-sm font-medium border border-primary/20">PHP</span>
+                                <span class="px-3 py-1.5 bg-primary/10 text-primary rounded-lg text-sm font-medium border border-primary/20">MySQL</span>
+                                <span class="px-3 py-1.5 bg-primary/10 text-primary rounded-lg text-sm font-medium border border-primary/20">HTML & CSS</span>
+                                <span class="px-3 py-1.5 bg-primary/10 text-primary rounded-lg text-sm font-medium border border-primary/20">JavaScript</span>
+                                <span class="px-3 py-1.5 bg-primary/10 text-primary rounded-lg text-sm font-medium border border-primary/20">REST API</span>
+                            </div>
+                        </div>
+
+                        <!-- System & Architecture -->
+                        <div>
+                            <h3 class="font-bold theme-text mb-4 flex items-center"><i class="fa-solid fa-diagram-project text-accent mr-2"></i> System & Architecture</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 bg-accent/10 text-accent rounded-lg text-sm font-medium border border-accent/20">Analisis Sistem</span>
+                                <span class="px-3 py-1.5 bg-accent/10 text-accent rounded-lg text-sm font-medium border border-accent/20">Perancangan Database</span>
+                                <span class="px-3 py-1.5 bg-accent/10 text-accent rounded-lg text-sm font-medium border border-accent/20">UI/UX Design</span>
+                                <span class="px-3 py-1.5 bg-accent/10 text-accent rounded-lg text-sm font-medium border border-accent/20">CMS</span>
+                            </div>
+                        </div>
+
+                        <!-- Design & Creative -->
+                        <div>
+                            <h3 class="font-bold theme-text mb-4 flex items-center"><i class="fa-solid fa-palette text-pink-400 mr-2"></i> Design & Creative</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 bg-pink-500/10 text-pink-400 rounded-lg text-sm font-medium border border-pink-500/20">CorelDraw</span>
+                                <span class="px-3 py-1.5 bg-pink-500/10 text-pink-400 rounded-lg text-sm font-medium border border-pink-500/20">Canva</span>
+                                <span class="px-3 py-1.5 bg-pink-500/10 text-pink-400 rounded-lg text-sm font-medium border border-pink-500/20">CapCut</span>
+                                <span class="px-3 py-1.5 bg-pink-500/10 text-pink-400 rounded-lg text-sm font-medium border border-pink-500/20">Video Editing</span>
+                            </div>
+                        </div>
+
+                        <!-- Productivity & Others -->
+                        <div>
+                            <h3 class="font-bold theme-text mb-4 flex items-center"><i class="fa-solid fa-briefcase text-amber-400 mr-2"></i> Productivity</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 bg-amber-500/10 text-amber-400 rounded-lg text-sm font-medium border border-amber-500/20">Microsoft Office</span>
+                                <span class="px-3 py-1.5 bg-amber-500/10 text-amber-400 rounded-lg text-sm font-medium border border-amber-500/20">Google Workspace</span>
+                                <span class="px-3 py-1.5 bg-amber-500/10 text-amber-400 rounded-lg text-sm font-medium border border-amber-500/20">Administrasi Digital</span>
+                                <span class="px-3 py-1.5 bg-amber-500/10 text-amber-400 rounded-lg text-sm font-medium border border-amber-500/20">Troubleshooting</span>
+                            </div>
+                        </div>
+
+                        <!-- Bahasa -->
+                        <div class="pt-4 border-t theme-border">
+                            <h3 class="font-bold theme-text mb-3 flex items-center"><i class="fa-solid fa-language text-primary mr-2"></i> Bahasa</h3>
+                            <div class="flex flex-wrap gap-4 text-sm theme-text-muted">
+                                <span><strong class="theme-text">Indonesia</strong> - Fasih</span>
+                                <span><strong class="theme-text">Sasak</strong> - Native</span>
+                                <span><strong class="theme-text">English</strong> - Pasif</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="theme-darker border-t theme-border py-16">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <!-- Brand -->
+                <div class="text-center md:text-left">
+                    <h2 class="text-2xl font-heading font-bold theme-text mb-2">ARYA<span class="gradient-text">.</span></h2>
+                    <p class="text-sm theme-text-muted">Software Engineer & Web Developer</p>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex items-center gap-4">
+                    <a href="https://github.com/aryadwinata" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/aryadwinata" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://instagram.com/aryadwinata" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/6282340915319" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-green-500 hover:border-green-500/50 hover:bg-green-500/10 transition-all">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:putrabttart@gmail.com" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t theme-border mt-10 pt-8 text-center">
+                <p class="text-sm theme-text-muted">&copy; 2026 Arya Dwinata. Dibuat dengan dedikasi untuk tujuan profesional.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tombol Kembali ke Atas -->
+    <a href="#beranda" id="backToTop" class="fixed bottom-8 right-8 bg-primary hover:bg-primaryHover text-white w-12 h-12 rounded-xl flex items-center justify-center shadow-lg shadow-primary/25 transition-all opacity-0 invisible z-50 hover:-translate-y-1">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="lanyard.js"></script>
+    <script>
+        // Inisialisasi Animasi AOS
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+        });
+
+        // ===== Theme Toggle (Light / Dark Mode) =====
+        const themeToggleBtns = [
+            document.getElementById('theme-toggle'),
+            document.getElementById('theme-toggle-mobile')
+        ].filter(Boolean);
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            try { localStorage.setItem('theme', theme); } catch (e) {}
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            applyTheme(isDark ? 'light' : 'dark');
+        }
+
+        themeToggleBtns.forEach(btn => btn.addEventListener('click', toggleTheme));
+
+        // Sinkronisasi dengan preferensi sistem jika user belum memilih manual
+        const mql = window.matchMedia('(prefers-color-scheme: dark)');
+        if (mql.addEventListener) {
+            mql.addEventListener('change', (e) => {
+                if (!localStorage.getItem('theme')) {
+                    applyTheme(e.matches ? 'dark' : 'light');
+                }
+            });
+        }
+
+        // Script untuk Mobile Menu Hamburger
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Tutup menu saat link di-klik
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Script untuk Tombol 'Kembali ke Atas'
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        // ===== Typing effect untuk role di hero =====
+        (function () {
+            const target = document.getElementById('typed-role');
+            if (!target) return;
+            const roles = [
+                'Web Developer',
+                'PHP & MySQL Specialist',
+                'UI/UX Enthusiast',
+                'Software Engineer',
+                'Digital Creator'
+            ];
+            let roleIdx = 0, charIdx = 0, deleting = false;
+            const typeSpeed = 90, deleteSpeed = 45, pauseEnd = 1400, pauseStart = 350;
+
+            function tick() {
+                const current = roles[roleIdx];
+                if (!deleting) {
+                    target.textContent = current.slice(0, ++charIdx);
+                    if (charIdx === current.length) {
+                        deleting = true;
+                        return setTimeout(tick, pauseEnd);
+                    }
+                } else {
+                    target.textContent = current.slice(0, --charIdx);
+                    if (charIdx === 0) {
+                        deleting = false;
+                        roleIdx = (roleIdx + 1) % roles.length;
+                        return setTimeout(tick, pauseStart);
+                    }
+                }
+                setTimeout(tick, deleting ? deleteSpeed : typeSpeed);
+            }
+            tick();
+        })();
+
+        // Active nav link on scroll (theme-aware)
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('theme-text');
+                link.classList.add('theme-text-muted');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('theme-text');
+                    link.classList.remove('theme-text-muted');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
