@@ -485,6 +485,35 @@
             .id-card-body { padding: 12px 10px 10px; }
         }
 
+        /* Instagram tabs */
+        .ig-tab {
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .ig-tab:hover {
+            color: var(--text-primary);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+        .ig-tab.active {
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+        .ig-panel {
+            display: none;
+        }
+        .ig-panel.active {
+            display: block;
+        }
+
         /* Project card overlay */
         .project-overlay {
             background: linear-gradient(to top, rgba(10, 10, 15, 0.95) 0%, rgba(10, 10, 15, 0.4) 50%, transparent 100%);
@@ -692,13 +721,13 @@
 
                 <!-- Social Links -->
                 <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                    <a href="https://github.com/aryadwinata" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all">
+                    <a href="https://github.com" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all">
                         <i class="fa-brands fa-github"></i>
                     </a>
-                    <a href="https://linkedin.com/in/aryadwinata" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all">
+                    <a href="https://www.linkedin.com/in/arya-dwinata-1163731b8/" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all">
                         <i class="fa-brands fa-linkedin-in"></i>
                     </a>
-                    <a href="https://instagram.com/aryadwinata" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all">
+                    <a href="https://instagram.com/masaryaaaaaaaaaa" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
                     <a href="https://wa.me/6282340915319" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-green-500 hover:border-green-500/50 hover:-translate-y-0.5 transition-all">
@@ -1154,6 +1183,72 @@
         </div>
     </section>
 
+    <!-- Instagram Feed -->
+    <section id="instagram" class="py-24 border-t theme-border">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold theme-text mb-3">Instagram Feed</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4 rounded-full"></div>
+                <p class="theme-text-muted max-w-md mx-auto">Konten terbaru dari akun Instagram saya</p>
+            </div>
+
+            <!-- Instagram Account Tabs -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up">
+                <button class="ig-tab active" data-tab="utama">
+                    <i class="fa-brands fa-instagram mr-2"></i>Personal
+                </button>
+                <button class="ig-tab" data-tab="bisnis">
+                    <i class="fa-solid fa-store mr-2"></i>Bisnis
+                </button>
+                <button class="ig-tab" data-tab="design">
+                    <i class="fa-solid fa-palette mr-2"></i>Design
+                </button>
+            </div>
+
+            <!-- Embed Containers -->
+            <div class="ig-panel active" id="ig-utama" data-aos="fade-up">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+                    <!-- Ganti URL di bawah dengan URL post Instagram asli kamu -->
+                    <!-- Format: https://www.instagram.com/p/KODE_POST/ -->
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DMpxyv4RhqR/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/C-cI1uLR5ud/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/C-cIkFhRkOd/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
+                </div>
+                <div class="text-center mt-8">
+                    <a href="https://www.instagram.com/masaryaaaaaaaaaa/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg">
+                        <i class="fa-brands fa-instagram text-lg"></i> Follow @masaryaaaaaaaaaa
+                    </a>
+                </div>
+            </div>
+
+            <div class="ig-panel" id="ig-bisnis">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DYBr_lgCaY6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DYBsU1HCUed/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DYBsgO2CaD5/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
+                </div>
+                <div class="text-center mt-8">
+                    <a href="https://www.instagram.com/putrabttstore/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg">
+                        <i class="fa-brands fa-instagram text-lg"></i> Follow @putrabttstore
+                    </a>
+                </div>
+            </div>
+
+            <div class="ig-panel" id="ig-design">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DTBB-UkD_KT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DTBDICTj7cV/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DTBEdl0jzL9/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:280px;"></blockquote>
+                </div>
+                <div class="text-center mt-8">
+                    <a href="https://www.instagram.com/putrabttart/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg">
+                        <i class="fa-brands fa-instagram text-lg"></i> Follow @putrabttart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="theme-darker border-t theme-border py-16">
         <div class="container mx-auto px-6 max-w-6xl">
@@ -1166,13 +1261,13 @@
 
                 <!-- Social Links -->
                 <div class="flex items-center gap-4">
-                    <a href="https://github.com/aryadwinata" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all">
+                    <a href="https://github.com" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all">
                         <i class="fa-brands fa-github"></i>
                     </a>
-                    <a href="https://linkedin.com/in/aryadwinata" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all">
+                    <a href="https://www.linkedin.com/in/arya-dwinata-1163731b8/" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all">
                         <i class="fa-brands fa-linkedin-in"></i>
                     </a>
-                    <a href="https://instagram.com/aryadwinata" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all">
+                    <a href="https://instagram.com/masaryaaaaaaaaaa" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
                     <a href="https://wa.me/6282340915319" target="_blank" class="w-10 h-10 theme-surface border theme-border rounded-lg flex items-center justify-center theme-text-muted hover:text-green-500 hover:border-green-500/50 hover:bg-green-500/10 transition-all">
@@ -1198,6 +1293,7 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="lanyard.js"></script>
+    <script async src="https://www.instagram.com/embed.js"></script>
     <script>
         // Inisialisasi Animasi AOS
         AOS.init({
@@ -1300,6 +1396,24 @@
             }
             tick();
         })();
+
+        // ===== Instagram Tab Switching =====
+        const igTabs = document.querySelectorAll('.ig-tab');
+        const igPanels = document.querySelectorAll('.ig-panel');
+
+        igTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                igTabs.forEach(t => t.classList.remove('active'));
+                igPanels.forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                const target = document.getElementById('ig-' + tab.dataset.tab);
+                if (target) {
+                    target.classList.add('active');
+                    // Re-process Instagram embeds when tab becomes visible
+                    if (window.instgrm) window.instgrm.Embeds.process();
+                }
+            });
+        });
 
         // Active nav link on scroll (theme-aware)
         const sections = document.querySelectorAll('section[id]');
