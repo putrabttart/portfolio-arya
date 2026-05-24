@@ -799,9 +799,9 @@
         <span class="hero-blob blob-3"></span>
 
         <div class="relative-content max-w-6xl mx-auto w-full">
-        <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12 w-full">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 w-full">
             <!-- Text Content -->
-            <div class="w-full md:w-3/5 text-center md:text-left" data-aos="fade-right" data-aos-duration="1000">
+            <div class="w-full md:w-3/5 text-center md:text-left order-2 md:order-1" data-aos="fade-right" data-aos-duration="1000">
                 <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold tracking-wide mb-6">
                     <span class="relative flex h-2 w-2">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -818,6 +818,18 @@
                 <div class="text-lg md:text-xl font-medium theme-text mb-6 h-7 flex items-center justify-center md:justify-start">
                     <span class="theme-text-muted mr-2">&gt;</span>
                     <span id="typed-role" class="gradient-text font-heading font-semibold"></span><span class="typed-cursor"></span>
+                </div>
+
+                <!-- Foto Mobile Only (tampil di antara role dan deskripsi) -->
+                <div class="flex justify-center mb-8 md:hidden">
+                    <div class="relative w-52 h-72">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-3xl rotate-3 blur-sm"></div>
+                        <div class="relative w-full h-full rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl shadow-primary/20">
+                            <img src="https://putrabttstore.web.id/aryadua.jpg" alt="Arya Dwinata" draggable="false" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="absolute -top-3 -right-3 w-6 h-6 bg-primary rounded-full animate-pulse"></div>
+                        <div class="absolute -bottom-2 -left-2 w-4 h-4 bg-accent rounded-full animate-pulse delay-500"></div>
+                    </div>
                 </div>
 
                 <p class="text-lg theme-text-muted mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
@@ -854,14 +866,14 @@
             </div>
 
             <!-- ============================================
-                 HERO IMAGE OPTIONS
+                 HERO IMAGE OPTIONS (Desktop Only)
                  Pilih salah satu: Foto Full ATAU ID Card Lanyard
                  Komentar salah satu blok untuk switch tampilan
             ============================================ -->
 
-            <!-- OPSI 1: Foto Full Portrait (aktif) -->
-            <div class="w-full md:w-2/5 flex justify-center" data-aos="fade-left" data-aos-duration="1000">
-                <div class="relative w-52 h-72 md:w-64 md:h-[22rem] lg:w-72 lg:h-[26rem]">
+            <!-- OPSI 1: Foto Full Portrait (aktif) - Desktop only -->
+            <div class="hidden md:flex w-full md:w-2/5 justify-center order-1 md:order-2" data-aos="fade-left" data-aos-duration="1000">
+                <div class="relative md:w-64 md:h-[22rem] lg:w-72 lg:h-[26rem]">
                     <div class="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-3xl rotate-3 blur-sm"></div>
                     <div class="relative w-full h-full rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl shadow-primary/20">
                         <img src="https://putrabttstore.web.id/aryadua.jpg" alt="Arya Dwinata" draggable="false" class="w-full h-full object-cover object-top">
