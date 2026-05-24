@@ -526,6 +526,12 @@
         .ig-panel.active {
             display: block;
         }
+        .project-panel {
+            display: none;
+        }
+        .project-panel.active {
+            display: block;
+        }
         /* Force Instagram embeds to be responsive */
         .ig-panel .instagram-media,
         .ig-panel iframe {
@@ -748,6 +754,10 @@
                     <i class="fa-solid fa-moon icon-moon"></i>
                 </button>
 
+                <a href="https://drive.google.com/uc?export=download&id=1uiBDZD6_vhbYA3OzbKzAkkcD4AhR4zGu" target="_blank" rel="noopener" class="theme-surface theme-text border theme-border px-4 py-2.5 rounded-lg transition-all text-sm font-semibold hover:border-primary/50 hover:text-primary flex items-center gap-2">
+                    <i class="fa-solid fa-download"></i> Download CV
+                </a>
+
                 <a href="mailto:putrabttart@gmail.com" class="bg-primary hover:bg-primaryHover text-white px-5 py-2.5 rounded-lg transition-all text-sm font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/40">
                     Hubungi Saya
                 </a>
@@ -773,6 +783,9 @@
                 <a href="#projek" class="mobile-link theme-text-muted hover:text-primary">Projek</a>
                 <a href="#pengalaman" class="mobile-link theme-text-muted hover:text-primary">Pengalaman</a>
                 <a href="#pendidikan" class="mobile-link theme-text-muted hover:text-primary">Pendidikan</a>
+                <a href="https://drive.google.com/uc?export=download&id=1uiBDZD6_vhbYA3OzbKzAkkcD4AhR4zGu" target="_blank" rel="noopener" class="mobile-link text-primary font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-download"></i> Download CV
+                </a>
             </div>
         </div>
     </nav>
@@ -840,9 +853,29 @@
                 </div>
             </div>
 
-            <!-- ID Card Lanyard -->
+            <!-- ============================================
+                 HERO IMAGE OPTIONS
+                 Pilih salah satu: Foto Full ATAU ID Card Lanyard
+                 Komentar salah satu blok untuk switch tampilan
+            ============================================ -->
+
+            <!-- OPSI 1: Foto Full Portrait (aktif) -->
             <div class="w-full md:w-2/5 flex justify-center" data-aos="fade-left" data-aos-duration="1000">
-                <div class="lanyard-wrapper" id="lanyardWrapper">
+                <div class="relative w-52 h-72 md:w-64 md:h-[22rem] lg:w-72 lg:h-[26rem]">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-3xl rotate-3 blur-sm"></div>
+                    <div class="relative w-full h-full rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl shadow-primary/20">
+                        <img src="https://putrabttstore.web.id/aryadua.jpg" alt="Arya Dwinata" draggable="false" class="w-full h-full object-cover object-top">
+                    </div>
+                    <!-- Decorative dots -->
+                    <div class="absolute -top-3 -right-3 w-6 h-6 bg-primary rounded-full animate-pulse"></div>
+                    <div class="absolute -bottom-2 -left-2 w-4 h-4 bg-accent rounded-full animate-pulse delay-500"></div>
+                </div>
+            </div>
+
+            <!-- OPSI 2: ID Card Lanyard (nonaktifkan komentar di bawah untuk menggunakan) -->
+            <!--
+            <div class="w-full md:w-2/5 flex justify-center" data-aos="fade-left" data-aos-duration="1000">
+                <div class="lanyard-wrapper hidden md:block" id="lanyardWrapper">
                     <canvas id="lanyardCanvas"></canvas>
                     <div class="lanyard-card" id="lanyardCard">
                         <div class="id-card">
@@ -872,7 +905,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="relative w-56 h-56 md:hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-3xl rotate-6 blur-sm"></div>
+                    <div class="relative w-full h-full rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl shadow-primary/20">
+                        <img src="https://putrabttstore.web.id/aryadua.jpg" alt="Arya Dwinata" draggable="false" class="w-full h-full object-cover object-top">
+                    </div>
+                </div>
             </div>
+            -->
         </div>
         </div>
 
@@ -932,6 +972,18 @@
                 <p class="theme-text-muted max-w-md mx-auto">Beberapa projek yang telah saya kerjakan</p>
             </div>
 
+            <!-- Project Category Tabs -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up">
+                <button class="ig-tab active" data-project-tab="web">
+                    <i class="fa-solid fa-code mr-2"></i>Projek Web
+                </button>
+                <button class="ig-tab" data-project-tab="design">
+                    <i class="fa-solid fa-palette mr-2"></i>Projek Design
+                </button>
+            </div>
+
+            <!-- Projek Web Panel -->
+            <div class="project-panel active" id="project-web">
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 <!-- Project 1 - PBS Store -->
@@ -1061,6 +1113,22 @@
                 </div>
 
             </div>
+            </div>
+
+            <!-- Projek Design Panel -->
+            <div class="project-panel" id="project-design">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DTBB-UkD_KT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:0;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DTBDICTj7cV/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:0;"></blockquote>
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DTBEdl0jzL9/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14" style="max-width:340px;width:100%;min-width:0;"></blockquote>
+                </div>
+                <div class="text-center mt-8">
+                    <a href="https://www.instagram.com/putrabttart/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg">
+                        <i class="fa-brands fa-instagram text-lg"></i> Follow @putrabttart
+                    </a>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -1350,6 +1418,46 @@
                         <i class="fa-brands fa-instagram text-lg"></i> Follow @putrabttart
                     </a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak Section -->
+    <section id="kontak" class="py-24 border-t theme-border">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold theme-text mb-3">Hubungi Saya</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4 rounded-full"></div>
+                <p class="theme-text-muted max-w-md mx-auto">Jangan ragu untuk menghubungi saya melalui salah satu kontak di bawah ini</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100">
+                <!-- WhatsApp / HP -->
+                <a href="https://wa.me/6282340915319" target="_blank" rel="noopener" class="theme-surface glow-border p-8 rounded-2xl text-center hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-green-500/10 text-green-500 rounded-xl flex items-center justify-center text-2xl mx-auto mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <h3 class="font-bold theme-text mb-2">WhatsApp / HP</h3>
+                    <p class="text-sm theme-text-muted">+62 823 4091 5319</p>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://instagram.com/masaryaaaaaaaaaa" target="_blank" rel="noopener" class="theme-surface glow-border p-8 rounded-2xl text-center hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-pink-500/10 text-pink-500 rounded-xl flex items-center justify-center text-2xl mx-auto mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <h3 class="font-bold theme-text mb-2">Instagram</h3>
+                    <p class="text-sm theme-text-muted">@masaryaaaaaaaaaa</p>
+                </a>
+
+                <!-- Email -->
+                <a href="mailto:putrabttart@gmail.com" class="theme-surface glow-border p-8 rounded-2xl text-center hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-2xl mx-auto mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <h3 class="font-bold theme-text mb-2">Email</h3>
+                    <p class="text-sm theme-text-muted">putrabttart@gmail.com</p>
+                </a>
             </div>
         </div>
     </section>

@@ -81,7 +81,7 @@
   })();
 
   // === Instagram Tabs ===
-  var igTabs = document.querySelectorAll('.ig-tab');
+  var igTabs = document.querySelectorAll('.ig-tab[data-tab]');
   var igPanels = document.querySelectorAll('.ig-panel');
   igTabs.forEach(function (tab) {
     tab.addEventListener('click', function () {
@@ -89,6 +89,22 @@
       igPanels.forEach(function (p) { p.classList.remove('active'); });
       tab.classList.add('active');
       var target = document.getElementById('ig-' + tab.dataset.tab);
+      if (target) {
+        target.classList.add('active');
+        if (window.instgrm) window.instgrm.Embeds.process();
+      }
+    });
+  });
+
+  // === Project Tabs ===
+  var projectTabs = document.querySelectorAll('[data-project-tab]');
+  var projectPanels = document.querySelectorAll('.project-panel');
+  projectTabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      projectTabs.forEach(function (t) { t.classList.remove('active'); });
+      projectPanels.forEach(function (p) { p.classList.remove('active'); });
+      tab.classList.add('active');
+      var target = document.getElementById('project-' + tab.dataset.projectTab);
       if (target) {
         target.classList.add('active');
         if (window.instgrm) window.instgrm.Embeds.process();
